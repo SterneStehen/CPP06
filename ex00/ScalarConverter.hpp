@@ -6,25 +6,27 @@
 /*   By: smoreron <7353718@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:02:20 by smoreron          #+#    #+#             */
-/*   Updated: 2024/12/18 23:02:40 by smoreron         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:24:46 by smoreron         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-include <iostream>
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
-class ScalarConverter
-{
-private:
-	/* data */
+#include <iostream>
+#include <string>
+#include <stdexcept>
+#include <cmath>
+
+class ScalarConverter {
 public:
-	ScalarConverter(/* args */);
-	~ScalarConverter();
+    ScalarConverter() = delete;
+    ~ScalarConverter() = delete;
+    ScalarConverter(const ScalarConverter&) = delete;
+    ScalarConverter& operator=(const ScalarConverter&) = delete;
+
+    static void convert(const std::string& literal);
 };
 
-ScalarConverter::ScalarConverter(/* args */)
-{
-}
+#endif
 
-ScalarConverter::~ScalarConverter()
-{
-}
