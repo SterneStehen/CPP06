@@ -6,7 +6,7 @@
 /*   By: smoreron <7353718@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:02:20 by smoreron          #+#    #+#             */
-/*   Updated: 2025/01/05 23:24:46 by smoreron         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:24:53 by smoreron         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,11 @@
 #include <string>
 #include <stdexcept>
 #include <cmath>
+#include <iomanip>
+#include <stdexcept>
+#include <limits>
+#include <cctype>
+#include <sstream>
 
 class ScalarConverter {
 public:
