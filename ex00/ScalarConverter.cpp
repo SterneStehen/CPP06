@@ -6,7 +6,7 @@
 /*   By: smoreron <7353718@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 01:29:55 by smoreron          #+#    #+#             */
-/*   Updated: 2025/01/06 01:39:28 by smoreron         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:46:54 by smoreron         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,12 @@ void ScalarConverter::convert(const std::string& literal)
                 s == "inff" || s == "+inff" || s == "-inff");
     };
 
-
+			// check char
+    if (literal.length() == 3 && literal.front() == '\'' && literal.back() == '\'') {
+        detectedType = CHAR;
+        value = static_cast<double>(literal[1]);
+    }
+	
     // check Pseudoliteral
     else if (isPseudoLiteral(literal)) {
         if (literal.find('f') != std::string::npos)
@@ -49,11 +54,7 @@ void ScalarConverter::convert(const std::string& literal)
             value = -std::numeric_limits<double>::infinity();
     }
 
-		// check char
-    if (literal.length() == 3 && literal.front() == '\'' && literal.back() == '\'') {
-        detectedType = CHAR;
-        value = static_cast<double>(literal[1]);
-    }
+
 	
     // check float ('f')
     else {
@@ -63,7 +64,7 @@ void ScalarConverter::convert(const std::string& literal)
             std::stringstream ss(floatStr);
             float f;
             ss >> f;
-            if (ss.god() && ss.eof()) {
+            if (ss && ss.eof()) {
                 detectedType = FLOAT;
                 value = static_cast<double>(f);
             }
@@ -76,7 +77,7 @@ void ScalarConverter::convert(const std::string& literal)
         std::stringstream ssInt(literal);
         int i;
         ssInt >> i;
-        if (ssInt.god() && ssInt.eof()) {
+        if (ssInt && ssInt.eof()) {
             detectedType = INT;
             value = static_cast<double>(i);
         }
@@ -85,7 +86,7 @@ void ScalarConverter::convert(const std::string& literal)
             std::stringstream ssDouble(literal);
             double d;
             ssDouble >> d;
-            if (ssDouble.god() && ssDouble.eof()) {
+            if (ssDouble && ssDouble.eof()) {
                 detectedType = DOUBLE;
                 value = d;
             }
