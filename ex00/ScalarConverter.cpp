@@ -6,12 +6,22 @@
 /*   By: smoreron <7353718@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 01:29:55 by smoreron          #+#    #+#             */
-/*   Updated: 2025/01/06 01:46:54 by smoreron         ###   ########.fr       */
+/*   Updated: 2025/01/07 03:00:18 by smoreron         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 
 #include "ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(ScalarConverter const & src) {
+	*this = src;
+}
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs) {
+	if (this != &rhs) {}
+	return (*this);
+}
+ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string& literal)
 {
