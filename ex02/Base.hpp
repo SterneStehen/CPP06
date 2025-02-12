@@ -19,6 +19,12 @@
 #include <iostream>
 
 class Base{
+// private:
+// Base();
+// Base(const Base& copy);
+// Base& operator=(const Base &copy);
+// ~Base();
+
 public:
 	virtual ~Base(){};
 };

@@ -25,12 +25,13 @@
 
 class ScalarConverter {
 public:
-    ScalarConverter() = delete;
-    ~ScalarConverter() = delete;
-    ScalarConverter(const ScalarConverter&) = delete;
-    ScalarConverter& operator=(const ScalarConverter&) = delete;
+    ScalarConverter(); // only here to make the class uninstatiable.
+     // ~ScalarConverter() = delete;
+    // ScalarConverter(const ScalarConverter&) = delete;
+    // ScalarConverter& operator=(const ScalarConverter&) = delete;
 
     static void convert(const std::string& literal);
+	
 };
 
 #endif

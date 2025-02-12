@@ -1,7 +1,7 @@
 NAME = serializer
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Serializer.cpp
 OBJ = $(SRC:.cpp=.o)

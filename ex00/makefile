@@ -1,7 +1,7 @@
 # Makefile
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp ScalarConverter.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = convert

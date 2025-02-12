@@ -6,48 +6,38 @@
 /*   By: smoreron <7353718@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 01:29:55 by smoreron          #+#    #+#             */
-/*   Updated: 2025/01/07 03:00:18 by smoreron         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:46:54 by smoreron         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() {}
-ScalarConverter::ScalarConverter(ScalarConverter const & src) {
-	*this = src;
+int isPseudoLiteral(const std::string & s){
+if(s == "nan" || s == "+nan" || s == "-nan" ||s == "inf" || s == "+inf" || s == "-inf" || s == "nanf" || s == "+nanf" || s == "-nanf" || s == "inff" || s == "+inff" || s == "-inff")
+	return 1;
+else	
+	return 0;
 }
-ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs) {
-	if (this != &rhs) {}
-	return (*this);
-}
-ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string& literal)
 {
-	
-	const int INT_MIN = -2147483648;
-	const int INT_MAX = 2147483647;
-	const int CHAR_MIN = -128;
-	const int CHAR_MAX = 127;
+
 
 	enum Type { CHAR, INT, FLOAT, DOUBLE, INVALID };
     Type detectedType = INVALID;
 
     double value = 0.0;
 
-    auto isPseudoLiteral = [&](const std::string& s) -> bool {
-        return (s == "nan" || s == "+nan" || s == "-nan" ||
-                s == "inf" || s == "+inf" || s == "-inf" ||
-                s == "nanf" || s == "+nanf" || s == "-nanf" ||
-                s == "inff" || s == "+inff" || s == "-inff");
-    };
-
 			// check char
     if (literal.length() == 3 && literal.front() == '\'' && literal.back() == '\'') {
         detectedType = CHAR;
         value = static_cast<double>(literal[1]);
     }
+
+	
+
+	
 	
     // check Pseudoliteral
     else if (isPseudoLiteral(literal)) {
@@ -62,10 +52,7 @@ void ScalarConverter::convert(const std::string& literal)
             value = std::numeric_limits<double>::infinity();
         else if (literal.find("-inf") != std::string::npos)
             value = -std::numeric_limits<double>::infinity();
-    }
-
-
-	
+    }	
     // check float ('f')
     else {
         size_t len = literal.length();
@@ -106,10 +93,10 @@ void ScalarConverter::convert(const std::string& literal)
         std::cerr << "Error: Invalid literal format." << std::endl;
         return;
     }
-
+	
 	// CHAR
 	std::cout << "char: ";
-	if(std::isnan(value) || std::isinf(value) || value < CHAR_MIN || value > CHAR_MAX)
+	if(std::isnan(value) || std::isinf(value) || value < -128 || value > 127)
 		std::cout << "impossible" << std::endl;
 	else 
 		if(std::isprint(static_cast<unsigned char>(value)))
@@ -119,7 +106,7 @@ void ScalarConverter::convert(const std::string& literal)
 
 	// INT
 	std::cout << "int: ";
-	if(std::isnan(value)  || std::isinf(value) || value < INT_MIN || value > INT_MAX)
+	if(std::isnan(value)  || std::isinf(value) || value < -2147483648 || value > 2147483647)
 	{
 		std::cout << "impossible " << std::endl;
 	}
